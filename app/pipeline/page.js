@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 const STATUS_OPTIONS = ['reviewing', 'applying', 'submitted', 'awarded', 'passed'];
 
@@ -196,8 +196,8 @@ export default function PipelinePage() {
                   })();
 
                   return (
-                    <>
-                      <tr key={grant.id} className="hover:bg-slate-50 transition-colors">
+                    <React.Fragment key={grant.id}>
+                      <tr className="hover:bg-slate-50 transition-colors">
                         <td className="px-4 py-3 max-w-xs">
                           <button
                             onClick={() => setExpandedId(expandedId === grant.id ? null : grant.id)}
@@ -252,7 +252,7 @@ export default function PipelinePage() {
                           </td>
                         </tr>
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </tbody>
