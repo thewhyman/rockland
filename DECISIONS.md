@@ -1,0 +1,7 @@
+Key Decisions
+
+- Built: Grant discovery (Grants.gov API), AI eligibility scoring (OpenAI gpt-4o-mini), and pipeline tracker (Supabase). Three screens end-to-end: org profile → discovery → pipeline.
+- Cut: EMR integration, reporting, and compliance features. The customer transcript was explicit — "I would never put two important systems in one place." Trust must be earned before clinical data access is appropriate. Grant discovery is the right wedge: lower data sensitivity, immediate value.
+- Grants.gov over SAM.gov: No API key required, zero setup friction, returns structured JSON with all needed fields. SAM.gov requires registration and approval — wrong call for a time-boxed build.
+- LLM scoring over rule-based matching: Grant eligibility criteria are written in natural language and vary widely across agencies. An LLM reasons over arbitrary criteria without requiring hand-coded rules per grant type. Used response_format: { type: 'json_object' } to enforce reliable structured output.
+- One decision I'd revisit with more time: Single shared Supabase instance for local and production. Fast for a prototype, but in a real build I'd set up a separate dev database and proper migration tooling to avoid dev writes polluting production data.
